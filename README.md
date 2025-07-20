@@ -3,7 +3,12 @@
 
 A modern, pirate-themed movie streaming platform built with React, featuring smooth animations, responsive design, and an immersive user experience.
 
-![PirateFlix](https://images.unsplash.com/photo-1489599505473-42c4169420f8?w=1200&h=600&fit=crop)
+## 🚢 Live Demo
+
+[Try PirateFlix Live](https://pirate-flix.vercel.app/)
+
+> If the demo is not working in your region, use a VPN.  
+> For Chrome, you can use the [VPN Extension](https://chromewebstore.google.com/detail/free-vpn-for-chrome-vpn-p/majdfhpaihoncoakbjgbdhglocklcgno?hl=en).
 
 ## ✨ Features
 
@@ -84,8 +89,7 @@ src/
 
 3. **Set up environment variables**
    ```bash
-   # The TMDB API key is already configured in the code
-   # For production, move it to environment variables
+   # Check the API Configuration Below
    ```
 
 4. **Start the development server**
@@ -94,7 +98,7 @@ src/
    ```
 
 5. **Open your browser**
-   Navigate to `http://localhost:5173` to see the application
+   Navigate to `http://localhost:8080` to see the application
 
 ### Building for Production
 
@@ -137,8 +141,24 @@ The application uses TMDB API for movie data. The current setup includes:
 
 To use your own API key:
 1. Register at [TMDB](https://www.themoviedb.org/documentation/api)
-2. Replace the API key in `src/lib/tmdb.ts`
-3. Consider moving it to environment variables for security
+2. Create a `.env` file in the root of your project:
+   ```bash
+   touch .env
+   ```
+3. Add your TMDB API key to the `.env` file:
+   ```env
+   VITE_TMDB_API_KEY=your_tmdb_api_key_here
+   VITE_BASE_URL= https://api.themoviedb.org/3
+   VITE_IMAGE_BASE_URL= https://image.tmdb.org/t/p
+   ```
+4. Update `src/lib/tmdb.ts` to use the environment variable:
+   ```ts
+   // src/lib/tmdb.ts
+   const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+   const BASE_URL = import.meta.env.VITE_BASE_URL;
+   const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
+   ```
+5. Restart your development server after making changes to `.env`.
 
 ## 📱 Responsive Breakpoints
 
